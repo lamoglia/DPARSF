@@ -92,7 +92,7 @@ RUN apt-get -qq update && \
 # TODO see https://github.com/spm/spm-docker/blob/main/matlab/Dockerfile
 ENV MATLAB_VERSION R2023b
 # not sure about this version
-ENV MCR_VERSION v232
+ENV MCR_VERSION R2023b
 ENV MCR_UPDATE 2
 RUN mkdir /opt/mcr_install \
  && mkdir /opt/mcr \
@@ -128,7 +128,7 @@ RUN chmod +x /opt/DPARSFA_run_StandAlone_Linux/run.sh && \
 
 ENV DPARSFPath /opt/DPARSFA_run_StandAlone_Linux
 
-RUN ls -lsa /opt/mcr/v91/sys/os/glnxa64/
+RUN ls -lsa /opt/mcr/${MCR_VERSION}/sys/os/glnxa64/
 
 #RUN rm /opt/mcr/v91/sys/os/glnxa64/libstdc++.so.6
 #RUN ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30 /opt/mcr/v91/sys/os/glnxa64/libstdc++.so.6
