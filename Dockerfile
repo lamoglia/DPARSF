@@ -91,6 +91,7 @@ RUN apt-get -qq update && \
 # Install MATLAB MCR
 # TODO see https://github.com/spm/spm-docker/blob/main/matlab/Dockerfile
 ENV MATLAB_VERSION R2023b
+# not sure about this version
 ENV MCR_VERSION v232
 ENV MCR_UPDATE 2
 RUN mkdir /opt/mcr_install \
