@@ -99,7 +99,7 @@ RUN mkdir /opt/mcr_install && \
 
 # Configure environment
 ENV MCR_VERSION v91
-ENV LD_LIBRARY_PATH /opt/mcr/${MCR_VERSION}/runtime/glnxa64:/opt/mcr/${MCR_VERSION}/bin/glnxa64:/opt/mcr/${MCR_VERSION}/sys/os/glnxa64:/opt/mcr/${MCR_VERSION}/sys/opengl/lib/glnxa64
+ENV LD_LIBRARY_PATH /opt/mcr/${MCR_VERSION}/runtime/glnxa64:/opt/mcr/${MCR_VERSION}/bin/glnxa64:/opt/mcr/${MCR_VERSION}/sys/os/glnxa64:/opt/mcr/${MCR_VERSION}/sys/opengl/lib/glnxa64:/opt/mcr/${MCR_VERSION}/extern/bin/glnxa64
 ENV MCR_INHIBIT_CTF_LOCK 1
 ENV MCRPath /opt/mcr/${MCR_VERSION}
 
@@ -121,8 +121,6 @@ RUN chmod +x /opt/DPARSFA_run_StandAlone_Linux/run.sh && \
 
 ENV DPARSFPath /opt/DPARSFA_run_StandAlone_Linux
 
-RUN rm /opt/mcr/v91/sys/os/glnxa64/libstdc++.so.6
-RUN ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30 /opt/mcr/v91/sys/os/glnxa64/libstdc++.so.6
-RUN rm /opt/mcr/v91/bin/glnxa64/libfreetype.so.6
-RUN ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so.6 /opt/mcr/v91/bin/glnxa64/libfreetype.so.6
+ENV LD_PRELOAD "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30 /usr/lib/x86_64-linux-gnu/libfreetype.so.6 $LD_PRELOAD"
+
 ENTRYPOINT ["/opt/DPARSFA_run_StandAlone_Linux/run.sh"]
